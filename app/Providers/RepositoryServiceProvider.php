@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repositories\Auth\{AuthRepository, AuthRepositoryEloquent};
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -12,6 +13,7 @@ class RepositoryServiceProvider extends ServiceProvider
      * @var array
      */
     const BINDINGS = [
+        AuthRepository::class => AuthRepositoryEloquent::class,
     ];
 
     /**
