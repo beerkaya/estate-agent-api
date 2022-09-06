@@ -32,9 +32,15 @@ class AppointmentStoreRequest extends FormRequest
 
             'contact_id' => ['required_if:contact,NULL', 'nullable', 'integer', 'exists:contacts,id'],
             'contact' => ['required_if:contact_id,NULL', 'nullable', 'array'],
-            'contact.name' => ['required_with:contact', 'string', 'max:255'],
-            'contact.email' => ['required_if:phone,NULL', 'nullable', 'string', 'email', 'max:100', 'unique:contacts,email,NULL,id'],
-            'contact.phone' => ['required_if:email,NULL', 'nullable', 'string', 'min:10', 'max:20', 'unique:contacts,phone,NULL,id'],
+            'contact.name' => ['required_if:contact_id,NULL', 'string', 'max:255'],
+            'contact.email' => array_merge(
+                ['required_if:phone,NULL,contact_id,NULL', 'nullable', 'string', 'email', 'max:100'],
+                !$this->contact_id ? ['unique:contacts,email,NULL,id'] : []
+            ),
+            'contact.phone' => array_merge(
+                ['required_if:email,NULL,contact_id,NULL', 'nullable', 'string', 'min:10', 'max:20'],
+                !$this->contact_id ? ['unique:contacts,phone,NULL,id'] : []
+            ),
             'contact.address' => ['nullable', 'string', 'min:10', 'max:100'],
         ];
     }

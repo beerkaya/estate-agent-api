@@ -34,8 +34,14 @@ class AppointmentUpdateRequest extends FormRequest
             'contact_id' => ['required_if:contact,NULL', 'nullable', 'integer', 'exists:contacts,id'],
             'contact' => ['required_if:contact_id,NULL', 'nullable', 'array'],
             'contact.name' => ['required_with:contact', 'string', 'max:255'],
-            'contact.email' => ['required_if:phone,NULL', 'nullable', 'string', 'email', 'max:100', "unique:contacts,email,{$appointment->id},id"],
-            'contact.phone' => ['required_if:email,NULL', 'nullable', 'string', 'min:10', 'max:20', "unique:contacts,phone,{$appointment->id},id"],
+            'contact.email' => array_merge(
+                ['required_if:phone,NULL', 'nullable', 'string', 'email', 'max:100'],
+                !$this->contact_id ? ["unique:contacts,email,{$appointment->id},id"] : []
+            ),
+            'contact.phone' => array_merge(
+                ['required_if:email,NULL', 'nullable', 'string', 'min:10', 'max:20'],
+                !$this->contact_id ? ["unique:contacts,phone,{$appointment->id},id"] : []
+            ),
             'contact.address' => ['nullable', 'string', 'min:10', 'max:100'],
         ];
     }
