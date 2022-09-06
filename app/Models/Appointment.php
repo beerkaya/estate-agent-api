@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Appointment extends Model
 {
@@ -27,5 +28,16 @@ class Appointment extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function scopeAppointmentDate($query, $start, $end)
+    {
+        if (!is_null($start) && !is_null($end)) {
+            return $query->where('appointment_date', '>=', Carbon::parse($start))->where('appointment_date', '<=', Carbon::parse($end));
+        } elseif (!is_null($start)) {
+            return $query->where('appointment_date', '>=', Carbon::parse($start));
+        } elseif (!is_null($end)) {
+            return $query->where('appointment_date', '<=', Carbon::parse($end));
+        }
     }
 }

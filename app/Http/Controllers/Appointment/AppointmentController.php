@@ -9,6 +9,8 @@ use App\Http\Resources\AppointmentResource;
 use App\Models\Appointment;
 use App\Repositories\Appointment\AppointmentRepository;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class AppointmentController extends Controller
 {
@@ -29,7 +31,10 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        return AppointmentResource::collection($this->repository->with(['user', 'contact'])->paginate());
+        return AppointmentResource::collection(QueryBuilder::for(Appointment::class)
+            ->allowedFilters([
+                AllowedFilter::scope('appointment_date'),
+            ])->with(['user', 'contact'])->paginate());
     }
 
     /**
@@ -75,6 +80,5 @@ class AppointmentController extends Controller
     public function destroy(Appointment $appointment)
     {
         $this->repository->delete($appointment->id);
-
     }
 }
