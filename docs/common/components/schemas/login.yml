@@ -1,0 +1,15 @@
+LoginResponse:
+  description: LoginResponse object
+  type: object
+  properties:
+    access_token:
+      type: string
+      example: "ey................................."
+    token_type:
+      type: string
+      example: bearer
+    expires_in:
+      type: integer
+      example: 3600
+    user:
+      $ref: '#/components/schemas/User'

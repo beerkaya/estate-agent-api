@@ -1,0 +1,15 @@
+Login:
+  description: Login Request
+  type: object
+  properties:
+    email:
+      type: string
+      example: "user@email.com"
+      required: true
+    password:
+      type: string
+      example: "123456"
+      required: true
+  required:
+    - email
+    - password

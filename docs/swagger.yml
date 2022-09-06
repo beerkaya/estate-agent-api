@@ -1,0 +1,45 @@
+openapi: "3.0.0"
+info:
+  description:
+    $ref: ./common/markdown/description.md
+  version: "0.0.1"
+  title: Estate Agent API Documentation
+servers:
+  - url: http://estate-agent.berkky.com/api
+paths:
+  $include: ./common/paths/auth.yml
+  $include: ./common/paths/appointment.yml
+  $include: ./common/paths/contact.yml
+components:
+  securitySchemes:
+    $ref: ./common/security.yml
+  schemas:
+    # $include: ./common/components/schemas/log.yml
+    # $include: ./common/components/schemas/links.yml
+    # $include: ./common/components/schemas/meta.yml
+    $include: ./common/components/schemas/user.yml
+    $include: ./common/components/schemas/error.yml
+    $include: ./common/components/schemas/validation_error.yml
+    $include: ./common/components/schemas/register.yml
+    # $include: ./common/components/schemas/message.yml
+    # $include: ./common/components/schemas/notification.yml
+    $include: ./common/components/schemas/login.yml
+    $include: ./common/components/schemas/appointment.yml
+    $include: ./common/components/schemas/contact.yml
+  requestBodies:
+    $include: ./common/components/requestBodies/login.yml
+    $include: ./common/components/requestBodies/register.yml
+    $include: ./common/components/requestBodies/contact.yml
+    $include: ./common/components/requestBodies/appointment.yml
+  responses:
+    $ref: ./common/responses.yml
+  parameters:
+    $ref: ./common/parameters.yml
+tags:
+  $ref: ./common/tags.yml
+x-tagGroups:
+  - name: Auth
+    tags:
+      - Authorization
+      - Contact
+      - Appointment

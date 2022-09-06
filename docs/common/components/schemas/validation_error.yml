@@ -1,0 +1,13 @@
+ValidationError:
+  type: object
+  properties:
+    message:
+      type: string
+      example: The given data was invalid.
+      description: Error message
+    errors:
+      description: Returns the related error message
+      type: object
+      example:
+        text:
+          - text field is required

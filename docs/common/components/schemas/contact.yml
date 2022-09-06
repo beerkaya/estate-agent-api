@@ -1,0 +1,30 @@
+Contact:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Contact ID
+      example: 1
+    name:
+      type: string
+      example: John Doe
+      description: Full Name
+    email:
+      type: string
+      example: example@site.com
+      description: Email Address<br>(must be unique, required if phone is not provided)
+    phone:
+      type: string
+      example: "+905535555555"
+      description: Phone Number<br>(must be unique, required if email is not provided)
+    address:
+      type: string
+      description: Address
+    created_at:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Created At
+    updated_at:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Updated At

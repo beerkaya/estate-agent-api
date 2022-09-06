@@ -1,0 +1,25 @@
+Login:
+  type: http
+  scheme: basic
+  description: |
+    In this project is using OAuth2 principles. But you can login with email and password authentication.
+    You have to a `accessToken` to login the API. We will give you an `accessToken` when you make a `login` request.
+
+    This token is must be put it in request **header**. For example:
+
+    `Authorization: Bearer <accessToken>`
+
+Register:
+  type: http
+  scheme: basic
+  description: |
+    Registration method is currently so simple made. You can register with email and password for now.
+
+    But we'll registration method will be improved in the future like phone number verification.
+
+OAuth2:
+  type: oauth2
+  flows:
+    password:
+      tokenUrl: /login
+      scopes: {}

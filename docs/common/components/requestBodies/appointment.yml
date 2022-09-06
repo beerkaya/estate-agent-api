@@ -1,0 +1,27 @@
+Appointment:
+  type: object
+  properties:
+    address:
+      type: string
+      example: example@site.com
+      description: Appointment Address
+    zip_code:
+      type: string
+      example: cm17pj
+      description: UK Zip Code
+    appointment_date:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Appointment Date
+    contact_id:
+      type: integer
+      example: 1
+      description: Contact ID<br>(required if contact is not provided)
+    contact:
+      $ref: '#/components/requestBodies/Contact'
+      description: Contact Object<br>(required if contact_id is not provided)
+  required:
+    - zip_code
+    - appointment_date
+    - contact_id
+    - contact

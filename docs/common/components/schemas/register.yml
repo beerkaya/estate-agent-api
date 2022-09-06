@@ -1,0 +1,26 @@
+RegisterResponse:
+  type: object
+  properties:
+    message:
+      type: string
+      description: response message
+    data:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: User successfully registered
+        user:
+          $ref: '#/components/schemas/User'
+        authorization:
+          type: object
+          properties:
+            access_token:
+              type: string
+              example: "ey................................."
+            token_type:
+              type: string
+              example: bearer

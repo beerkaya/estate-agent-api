@@ -1,0 +1,54 @@
+BadRequest:
+  description: The structure of the request body (usually a json object) is broken.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+Unauthorized:
+  description: Authorization error. Authorization request header is incorrect or not found.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+Forbidden:
+  description: The client does not have the required privileges specific to this operation.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+NotFound:
+  description: The requested object was not found on the server.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+MethodNotAllowed:
+  description: This type of operation (GET, POST, PUT or DELETE) is not allowed.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+UnprocessableEntity:
+  description: There is a problem (usually validation related) with the submitted object.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/ValidationError"
+TooManyRequests:
+  description: Too many requests have been made in a certain period of time.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+InternalServerError:
+  description: An error occurred on the server and the request was not fulfilled.
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"
+ServiceUnavailable:
+  description: The server is currently down (down or unreachable).
+  content:
+    application/json:
+      schema:
+        $ref: "#/components/schemas/Error"

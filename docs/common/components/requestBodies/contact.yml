@@ -1,0 +1,22 @@
+Contact:
+  type: object
+  properties:
+    name:
+      type: string
+      example: John Doe
+      description: Full Name
+    email:
+      type: string
+      example: example@site.com
+      description: Email Address<br>(must be unique, required if phone is not provided)
+    phone:
+      type: string
+      example: "+905535555555"
+      description: Phone Number<br>(must be unique, required if email is not provided)
+    address:
+      type: string
+      description: Address
+  required:
+    - name
+    - email
+    - phone

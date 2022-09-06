@@ -1,0 +1,78 @@
+- name: Authorization
+  description: Authorization processes.
+- name: User
+  description: User processes.
+- name: User Address
+  description: User Address processes.
+- name: Settings
+  description: Settings processes.
+- name: Country
+  description: Country processes.
+- name: City
+  description: City processes.
+- name: District
+  description: District processes.
+- name: Courier
+  description: Courier processes.
+- name: Age Restriction
+  description: Age Restriction processes.
+- name: Reseller
+  description: Reseller processes.
+- name: Warehouse
+  description: Warehose processes.
+- name: Order Status
+  description: Order Status processes.
+- name: Order Cancel
+  description: Order Cancel processes.
+- name: Order Cancel Reason
+  description: Order Cancel Reason processes.
+- name: Category
+  description: Category processes.
+- name: Currency
+  description: Currency processes.
+- name: Bag Type
+  description: Bag Type Processes.
+- name: Brand
+  description: Brand Processes.
+- name: Language
+  description: Language Processes.
+- name: Product
+  description: Product processes.
+- name: Product Option
+  description: Product Option processes.
+- name: Product Option Type
+  description: Product Option Type processes.
+- name: Product Price
+  description: Product Price processes.
+- name: Product Unit Type
+  description: Product Unit Type processes.
+- name: Product Provider
+  description: Product Provider processes.
+- name: Product Stock
+  description: Product Stock processes.
+- name: Product Request
+  description: Product Request processes.
+- name: Coupon
+  description: Coupon processes.
+- name: Campaign
+  description: Campaign processes.
+- name: Payment Method
+  description: Payment Method processes.
+- name: Delivery Area
+  description: Delivery Area processes.
+- name: Logs
+  description: Log processes.
+- name: Search
+  description: Search processes.
+- name: Auth / User Profile
+  description: Authorized User Profile processes.
+- name: Auth / User Address
+  description: Authorized User Address processes.
+# - name: Auth / User Order
+#   description: Authorized User Order processes.
+- name: Auth / User Favorite
+  description: Authorized User Favorite processes.
+- name: Cart
+  description: Cart processes.
+- name: Notification Template
+  description: Notification template processes.

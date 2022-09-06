@@ -1,0 +1,23 @@
+RegisterRequest:
+  description: Register Request
+  type: object
+  properties:
+    name:
+      type: string
+      required: true
+      description: Full Name
+    email:
+      type: string
+      required: true
+      description: Email Address (must be unique)
+    password:
+      type: string
+      required: true
+    password_confirmation:
+      type: string
+      required: true
+  required:
+    - name
+    - email
+    - password
+    - password_confirmation

@@ -1,0 +1,189 @@
+/appointments:
+  get:
+    tags:
+      - Appointment
+    summary: List
+    description: Get the Appointments list
+    parameters:
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/perPage"
+      - $ref: "#/components/parameters/appointment_date_filter"
+      - $ref: "#/components/parameters/Authorization"
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Appointment"
+                  links:
+                    $ref: "#/components/schemas/Links"
+                  meta:
+                    $ref: "#/components/schemas/Meta"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+  post:
+    tags:
+      - Appointment
+    summary: Create
+    description: Create a new Appointment
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+    requestBody:
+      description: Appointment object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/requestBodies/Appointment"
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/Appointment"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+/appointments/{id}:
+  put:
+    tags:
+      - Appointment
+    summary: Update
+    description: Update an exists Appointment resource
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+
+      - name: id
+        in: path
+        description: Appointment ID
+        type: integer
+        required: true
+    requestBody:
+      description: Appointment object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/requestBodies/Appointment"
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/Appointment"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+  get:
+    tags:
+      - Appointment
+    summary: Get
+    description: Get an exists Appointment resource
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+
+      - name: id
+        in: path
+        description: Appointment ID
+        type: integer
+        required: true
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/Appointment"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+  delete:
+    tags:
+      - Appointment
+    summary: Delete
+    description: Delete an exists Appointment resource
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+
+      - name: id
+        in: path
+        description: Appointment ID
+        type: integer
+        required: true
+    responses:
+      204:
+        description: Deleted
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"

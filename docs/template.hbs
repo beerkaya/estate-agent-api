@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf8" />
+    <title>{{title}}</title>
+    <!-- needed for adaptive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    {{#if templateOptions.prod }}
+    <link rel="stylesheet" href="/public/static/docs/try.css?v=2">
+    {{else}}
+    <link rel="stylesheet" href="/public/static/docs/try.css">
+    {{/if}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.25.1/swagger-ui.css" />
+    {{{redocHead}}}
+    {{#unless disableGoogleFont}}
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    {{/unless}}
+</head>
+
+<body>
+    {{{redocHTML}}}
+    <div id="swaggerModal">
+        <div class="swagger-ui">
+            <div class="wrapper">
+                <section class="block col-12 block-desktop col-12-desktop">
+                    <div id="modalContent">
+                        <span id="closeSwaggerModal">×</span>
+                        <div id="contentInner"></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="swaggerBox">
+        <div id="swagger-ui"></div>
+    </div>
+    <script>
+        window.container = document.getElementById('redoc');
+        window.isProd = Boolean("{{{templateOptions.prod}}}");
+        window.redocSpec = __redoc_state.spec.data || {}
+    </script>
+    {{#if templateOptions.prod }}
+    <script src="/public/static/docs/try.css?v=2"></script>
+    {{else}}
+    <script src="/public/static/docs/try.css"></script>
+    {{/if}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof initTry === 'function') {
+                initTry();
+            }
+        });
+    </script>
+</body>
+
+</html>

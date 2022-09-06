@@ -1,0 +1,167 @@
+/auth/login:
+  post:
+    tags:
+      - Authorization
+    summary: Login
+    description: Login with email and password
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/requestBodies/Login"
+    responses:
+      200:
+        description: Successful login. But you should put the `accessToken` in the header.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginResponse"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+
+/auth/register:
+  post:
+    tags:
+      - Authorization
+    summary: Register
+    description: Register with email and password
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/requestBodies/RegisterRequest"
+    responses:
+      201:
+        description: Registered
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterResponse"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+
+/auth/logout:
+  post:
+    tags:
+      - Authorization
+    summary: Logout
+    description: Logout the current user.
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+    responses:
+      200:
+        description: User tokens deleted.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  example: User successfully signed out.
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+
+/auth/refresh:
+  post:
+    tags:
+      - Authorization
+    summary: Refresh Token
+    description: Refresh Token
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+    responses:
+      200:
+        description: Password reset link sent to user.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginResponse"
+      400:
+        description: Password reset link not sent.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  example: A error message
+                email:
+                  example: foo@bar.com
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+
+/auth/user-profile:
+  get:
+    tags:
+      - Authorization
+    summary: User Profile
+    description: User Profile
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+    responses:
+      200:
+        description: User Profile
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"

@@ -1,0 +1,50 @@
+# Global Parameters
+page:
+  in: query
+  name: page
+  required: false
+  description: Pagination offset.
+  schema:
+    type: integer
+    default: 1
+perPage:
+  in: query
+  name: perPage
+  required: false
+  description: Per page.
+  schema:
+    type: integer
+    default: 15
+name:
+  in: query
+  name: name
+  required: false
+  description: Name.
+  schema:
+    type: string
+edit:
+  in: query
+  name: edit
+  required: false
+  description: If you want to edit the data with translatable fields.
+  schema:
+    type: boolean
+    default: false
+appointment_date_filter:
+  in: query
+  name: f[appointment_date]
+  example: "2022-09-06T14:42:23,2022-09-06T19:42:23"
+  required: false
+  description: Appointment Date Filter.
+  schema:
+    type: integer
+
+# Specific Parameters
+
+Authorization:
+  in: header
+  name: Authorization
+  description: Authorization
+  type: string
+  example: "Bearer ey......................"
+  required: true

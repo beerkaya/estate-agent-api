@@ -1,0 +1,188 @@
+/contacts:
+  get:
+    tags:
+      - Contact
+    summary: List
+    description: Get the Contacts list
+    parameters:
+      - $ref: "#/components/parameters/page"
+      - $ref: "#/components/parameters/perPage"
+      - $ref: "#/components/parameters/Authorization"
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Contact"
+                  links:
+                    $ref: "#/components/schemas/Links"
+                  meta:
+                    $ref: "#/components/schemas/Meta"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+  post:
+    tags:
+      - Contact
+    summary: Create
+    description: Create a new Contact
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+    requestBody:
+      description: Contact object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/requestBodies/Contact"
+    responses:
+      201:
+        description: Created
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/Contact"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+/contacts/{id}:
+  put:
+    tags:
+      - Contact
+    summary: Update
+    description: Update an exists Contact resource
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+
+      - name: id
+        in: path
+        description: Contact ID
+        type: integer
+        required: true
+    requestBody:
+      description: Contact object
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/requestBodies/Contact"
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/Contact"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+  get:
+    tags:
+      - Contact
+    summary: Get
+    description: Get an exists Contact resource
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+
+      - name: id
+        in: path
+        description: Contact ID
+        type: integer
+        required: true
+    responses:
+      200:
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  $ref: "#/components/schemas/Contact"
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"
+  delete:
+    tags:
+      - Contact
+    summary: Delete
+    description: Delete an exists Contact resource
+    parameters:
+      - $ref: "#/components/parameters/Authorization"
+
+      - name: id
+        in: path
+        description: Contact ID
+        type: integer
+        required: true
+    responses:
+      204:
+        description: Deleted
+      400:
+        $ref: "#/components/responses/BadRequest"
+      401:
+        $ref: "#/components/responses/Unauthorized"
+      403:
+        $ref: "#/components/responses/Forbidden"
+      404:
+        $ref: "#/components/responses/NotFound"
+      405:
+        $ref: "#/components/responses/MethodNotAllowed"
+      422:
+        $ref: "#/components/responses/UnprocessableEntity"
+      500:
+        $ref: "#/components/responses/InternalServerError"

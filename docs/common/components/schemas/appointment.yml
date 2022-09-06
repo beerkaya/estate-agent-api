@@ -1,0 +1,47 @@
+Appointment:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: Appointment ID
+      example: 1
+    address:
+      type: string
+      example: example@site.com
+      description: Appointment Address
+    zip_code:
+      type: string
+      example: cm17pj
+      description: UK Zip Code
+    appointment_date:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Appointment Date
+    leave_date:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Estate Agent Leave Date
+    return_date:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Estate Agent Return Date
+    contact_id:
+      type: integer
+      example: 1
+      description: Contact ID<br>(required if contact is not provided)
+    contact:
+      $ref: '#/components/schemas/Contact'
+    user_id:
+      type: integer
+      example: 1
+      description: User ID
+    user:
+      $ref: '#/components/schemas/User'
+    created_at:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Created At
+    updated_at:
+      type: string
+      example: "2022-09-06T16:42:23+03:00"
+      description: Updated At

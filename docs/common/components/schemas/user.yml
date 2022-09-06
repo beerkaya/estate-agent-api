@@ -1,0 +1,14 @@
+User:
+  type: object
+  properties:
+    id:
+      type: integer
+      description: User ID
+      example: 1
+    name:
+      type: string
+      example: John Doe
+    email:
+      type: string
+      example: example@site.com
+      description: User Email Address
