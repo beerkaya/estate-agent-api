@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Repositories\Auth\{AuthRepository, AuthRepositoryEloquent};
 use App\Repositories\Contact\{ContactRepository, ContactRepositoryEloquent};
+use App\Repositories\Appointment\{AppointmentRepository, AppointmentRepositoryEloquent};
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -16,6 +17,7 @@ class RepositoryServiceProvider extends ServiceProvider
     const BINDINGS = [
         AuthRepository::class => AuthRepositoryEloquent::class,
         ContactRepository::class => ContactRepositoryEloquent::class,
+        AppointmentRepository::class => AppointmentRepositoryEloquent::class,
     ];
 
     /**

@@ -16,4 +16,8 @@ class Contact extends Model
         'address'
     ];
 
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 }

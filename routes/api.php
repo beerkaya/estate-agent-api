@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Contact\ContactController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::group([
     'middleware' => 'api',
 ], function () {
     Route::apiResources([
-        'contacts' => ContactController::class
+        'contacts' => ContactController::class,
+        'appointments' => AppointmentController::class,
     ]);
 });
