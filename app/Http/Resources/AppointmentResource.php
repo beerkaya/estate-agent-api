@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class AppointmentResource extends JsonResource
 {
@@ -14,6 +15,9 @@ class AppointmentResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $resource = parent::toArray($request);
+        $resource['distance'] = round(($this->distance / 1000), 2) . ' km';
+        $resource['time'] = Carbon::parse('0000-00-00')->addMilliseconds($this->time)->format('H:i:s');
+        return $resource;
     }
 }

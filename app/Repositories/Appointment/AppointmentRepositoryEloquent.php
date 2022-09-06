@@ -35,11 +35,13 @@ class AppointmentRepositoryEloquent extends BaseRepository implements Appointmen
         $attributes['user_id'] = Auth::user()->id;
         $attributes['contact_id'] = @$attributes['contact_id'] ?? Contact::create($attributes['contact'])->id;
         $attributes['appointment_date'] = Carbon::parse($attributes['appointment_date']);
-        $distance_time = $this->calculateDistanceTime($attributes['zip_code']);
+        $distance_time = $this->calculateDistanceAndTime($attributes['zip_code']);
         $attributes['leave_date'] = Carbon::parse($attributes['appointment_date'])
-            ->addMilliseconds(-1 * $distance_time);
+            ->addMilliseconds(-1 * $distance_time['time']);
         $attributes['return_date'] = Carbon::parse($attributes['appointment_date'])
-            ->addMilliseconds($distance_time)->addHours(1);
+            ->addMilliseconds($distance_time['time'])->addHours(1);
+        $attributes['distance'] = $distance_time['distance'];
+        $attributes['time'] = $distance_time['time'];
 
         return parent::create($attributes);
     }
@@ -50,19 +52,24 @@ class AppointmentRepositoryEloquent extends BaseRepository implements Appointmen
         $attributes['user_id'] = Auth::user()->id;
         $attributes['contact_id'] = @$attributes['contact_id'] ?? Contact::create($attributes['contact'])->id;
 
-        if ($appointment->appointment_date != $attributes['appointment_date']) {
+        if (
+            $appointment->appointment_date != $attributes['appointment_date'] ||
+            $appointment->zip_code != $attributes['zip_code']
+        ) {
             $attributes['appointment_date'] = Carbon::parse($attributes['appointment_date']);
-            $distance_time = $this->calculateDistanceTime($attributes['zip_code']);
+            $distance_time = $this->calculateDistanceAndTime($attributes['zip_code']);
             $attributes['leave_date'] = Carbon::parse($attributes['appointment_date'])
-                ->addMilliseconds(-1 * $distance_time);
+                ->addMilliseconds(-1 * $distance_time['time']);
             $attributes['return_date'] = Carbon::parse($attributes['appointment_date'])
-                ->addMilliseconds($distance_time)->addHours(1);
+                ->addMilliseconds($distance_time['time'])->addHours(1);
+            $attributes['distance'] = $distance_time['distance'];
+            $attributes['time'] = $distance_time['time'];
         }
 
         return parent::update($attributes, $id);
     }
 
-    public function calculateDistanceTime($zip_code)
+    public function calculateDistanceAndTime($zip_code)
     {
         $estate_zip_code = env('ZIP_CODE');
         $estate_coordinate = $this->getCoordinateFromZipCode($estate_zip_code);
@@ -101,7 +108,10 @@ class AppointmentRepositoryEloquent extends BaseRepository implements Appointmen
         }
 
         $res = json_decode($response);
-        return $res->paths[0]->time;
+        return [
+            'time' => $res->paths[0]->time,
+            'distance' => $res->paths[0]->distance,
+        ];
     }
 
     public function getCoordinateFromZipCode($zip_code)
@@ -141,6 +151,6 @@ class AppointmentRepositoryEloquent extends BaseRepository implements Appointmen
             throw new Exception('Zip code not found');
         }
 
-        return $res[0]->boundingbox[0] . '%2C' . $res[0]->lon;
+        return round($res[0]->lat, 5) . '%2C' . round($res[0]->lon, 5);
     }
 }

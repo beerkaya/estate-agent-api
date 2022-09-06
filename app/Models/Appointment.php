@@ -16,6 +16,8 @@ class Appointment extends Model
         'appointment_date',
         'leave_date',
         'return_date',
+        'distance',
+        'time',
         'contact_id',
         'user_id'
     ];
