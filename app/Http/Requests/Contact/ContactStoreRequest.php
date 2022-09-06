@@ -25,8 +25,8 @@ class ContactStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'between:2,100'],
-            'email' => ['required_if:phone,NULL', 'nullable', 'string', 'email', 'max:100', 'unique:contacts'],
-            'phone' => ['required_if:email,NULL', 'nullable', 'string', 'min:10', 'max:20', 'unique:contacts'],
+            'email' => ['required_if:phone,NULL', 'nullable', 'string', 'email', 'max:100', 'unique:contacts,email,NULL,id'],
+            'phone' => ['required_if:email,NULL', 'nullable', 'string', 'min:10', 'max:20', 'unique:contacts,phone,NULL,id'],
             'address' => ['nullable', 'string', 'min:10', 'max:100'],
         ];
     }
